@@ -51,7 +51,8 @@
 								@endcan
 								
 
-								@if($category->products->count() < 1 )								@can('Category_Destroy')	
+								@if($category->products->count() < 1 )								
+                                @can('Category_Destroy')	
 								<a href="javascript:void(0)"
 								onclick="Confirm('{{$category->id}}')" 
 								class="btn btn-dark" title="Delete">
@@ -87,16 +88,27 @@
 
 		window.livewire.on('show-modal', msg =>{
 			$('#theModal').modal('show')
-		});
+		})
+		window.livewire.on('hide-modal', msg =>{
+			$('#theModal').modal('hide')
+		})
+        window.livewire.on('hidden.bs.modal', msg =>{
+        $('.er').css('display', 'none')
+        })
 		window.livewire.on('category-added', msg =>{
 			$('#theModal').modal('hide')
-		});
+            noty(msg)
+		})
 		window.livewire.on('category-updated', msg =>{
 			$('#theModal').modal('hide')
-		});
+            noty(msg)
+		})
+		window.livewire.on('category-deleted', msg =>{
+            noty(msg)
+		})
 
 
-	});
+	})
 
 
 

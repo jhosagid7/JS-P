@@ -11,17 +11,17 @@
 		document.getElementById('cash').focus()
 		document.getElementById('hiddenTotal').value =''
 	})
-	
+
 	listener.simple_combo("f7", function() {
-		console.log('print last : f10')
+		console.log('print last : f7')
 		livewire.emit('print-last')
 	})
 
 	listener.simple_combo("f4", function() {
-		var total = parseFloat(document.getElementById('hiddenTotal').value)		
+		var total = parseFloat(document.getElementById('hiddenTotal').value)
 		if(total > 0) {
 			Confirm(0, 'clearCart', '¿SEGUR@ DE ELIMINAR EL CARRITO?')
-		} else 
+		} else
 		{
 			noty('AGREGA PRODUCTOS A LA VENTA')
 		}

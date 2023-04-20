@@ -1,9 +1,9 @@
 <div class="connect-sorting">
-	
+
 <div class="connect-sorting-content">
 	<div class="card simple-title-task ui-sortable-handle">
 		<div class="card-body">
-			
+
 		@if($total > 0)
 		<div class="table-responsive tblscroll" style="max-height: 650px; overflow: hidden">
 			<table class="table table-bordered table-striped mt-1">
@@ -23,7 +23,7 @@
 						<td class="text-center table-th">
 							@if(count($item->attributes) > 0)
 							<span>
-								<img src="{{ asset('storage/products/' . $item->attributes[0]) }}" alt="imágen de producto" height="90" width="90" class="rounded">
+								<img src="{{ asset('storage/products/' . $item->attributes[0]) }}" alt="imágen de producto" height="50" width="50" class="rounded">
 							</span>
 							@endif
 						</td>
@@ -33,7 +33,7 @@
 							<input type="number" id="r{{$item->id}}"
 							wire:change="updateQty({{$item->id}}, $('#r' + {{$item->id}}).val() )"
 							style="font-size: 1rem!important"
-							class="form-control text-center" 
+							class="form-control text-center"
 							value="{{$item->quantity}}"
 							>
 						</td>
@@ -76,4 +76,4 @@
 </div>
 
 
-</div>	
+</div>

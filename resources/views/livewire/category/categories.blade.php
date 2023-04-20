@@ -1,34 +1,34 @@
 <div class="row sales layout-top-spacing">
-	
+
 	<div class="col-sm-12">
 		<div class="widget widget-chart-one">
 			<div class="widget-heading">
 				<h4 class="card-title">
 					<b>{{$componentName}} | {{$pageTitle}}</b>
 				</h4>
-				<ul class="tabs tab-pills">		
-					@can('Category_Create')	
+				<ul class="tabs tab-pills">
+					@can('Category_Create')
 					<li>
-						<a href="javascript:void(0)" class="tabmenu bg-dark" data-toggle="modal" data-target="#theModal" 
+						<a href="javascript:void(0)" class="tabmenu bg-dark" data-toggle="modal" data-target="#theModal"
 						>Agregar</a>
-					</li>	
+					</li>
 					@endcan
 				</ul>
 			</div>
-			@can('Category_Search')	
+			@can('Category_Search')
 			@include('common.searchbox')
 			@endcan
-			
-			<div class="widget-content">		
-				
+
+			<div class="widget-content">
+
 
 				<div class="table-responsive">
-					<table class="table table-bordered table striped mt-1">
+					<table class="table mt-1 table-bordered striped">
 						<thead class="text-white" style="background: #3B3F5C">
 							<tr>
-								<th class="table-th text-white">DESCRIPCIÓN</th>
-								<th class="table-th text-white text-center">IMAGEN</th>
-								<th class="table-th text-white text-center">ACTIONS</th>
+								<th class="text-white table-th">DESCRIPCIÓN</th>
+								<th class="text-center text-white table-th">IMAGEN</th>
+								<th class="text-center text-white table-th">ACTIONS</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -42,26 +42,27 @@
 								</td>
 
 								<td class="text-center">
-									@can('Category_Update')	
-									<a href="javascript:void(0)" 
+									@can('Category_Update')
+									<a href="javascript:void(0)"
 									wire:click="Edit({{$category->id}})"
 									class="btn btn-dark mtmobile" title="Edit">
 									<i class="fas fa-edit"></i>
 								</a>
 								@endcan
-								
 
-								@if($category->products->count() < 1 )								
-                                @can('Category_Destroy')	
+
+								{{--  @if($category->products->count() < 1 )  --}}
+                                @can('Category_Destroy')
 								<a href="javascript:void(0)"
-								onclick="Confirm('{{$category->id}}')" 
+								onclick="Confirm('{{$category->id}}',
+                                '{{ $category->products->count() }}')"
 								class="btn btn-dark" title="Delete">
 								<i class="fas fa-trash"></i>
 							</a>
 							@endcan
-							@endif
+							{{--  @endif  --}}
 
-							
+
 
 						</td>
 					</tr>
@@ -112,9 +113,12 @@
 
 
 
-	function Confirm(id)
-	{	
-
+	function Confirm(id, products)
+	{
+        if(products > 0){
+            swal('NO SEPUEDE ELIMINAR LA CATEGOIRA PORQUE TIENE PRODUCTOS RELACIONADOS!')
+            return;
+        }
 		swal({
 			title: 'CONFIRMAR',
 			text: '¿CONFIRMAS ELIMINAR EL REGISTRO?',

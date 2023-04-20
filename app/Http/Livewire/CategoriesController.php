@@ -21,13 +21,13 @@ class CategoriesController extends Component
 	public $name, $search, $image, $selected_id, $pageTitle, $componentName;
 	private $pagination = 5;
 
-	
+
 	public function mount()
 	{
 		$this->pageTitle = 'Listado';
 		$this->componentName = 'Categorías';
-		
-		
+
+
 	}
 
 	public function paginationView()
@@ -83,7 +83,7 @@ class CategoriesController extends Component
 		]);
 
 
-		$customFileName;
+		$customFileName = null;
 		if($this->image)
 		{
 			$customFileName = uniqid() . '_.' . $this->image->extension();
@@ -145,7 +145,7 @@ class CategoriesController extends Component
 	}
 
 
-	public function resetUI() 
+	public function resetUI()
 	{
 		$this->name ='';
 		$this->image = null;
@@ -154,14 +154,14 @@ class CategoriesController extends Component
 	}
 
 
-	
+
 	protected $listeners =['deleteRow' => 'Destroy'];
 
-	
-	public function Destroy(Category $category)
-	{   	
 
-		$imageName = $category->image; 
+	public function Destroy(Category $category)
+	{
+
+		$imageName = $category->image;
 		$category->delete();
 
 		if($imageName !=null) {

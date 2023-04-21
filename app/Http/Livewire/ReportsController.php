@@ -8,11 +8,15 @@ use App\Models\Sale;
 use App\Models\SaleDetail;
 use Carbon\Carbon;
 
+use App\Traits\PrintTrait;
+
 
 class ReportsController extends Component
 {
 
-    public $componentName, $data, $details, $sumDetails, $countDetails, 
+    use PrintTrait;
+
+    public $componentName, $data, $details, $sumDetails, $countDetails,
     $reportType, $userId, $dateFrom, $dateTo, $saleId;
 
     public function mount()
@@ -39,6 +43,11 @@ class ReportsController extends Component
         ->section('content');
     }
 
+    // escuchar eventos
+    protected $listeners = [
+        'rePrint'  =>  'rePrint'
+    ];
+
     public function SalesByDate()
     {
         if($this->reportType == 0) // ventas del dia
@@ -55,7 +64,7 @@ class ReportsController extends Component
             return;
         }
 
-        if($this->userId == 0) 
+        if($this->userId == 0)
         {
             $this->data = Sale::join('users as u','u.id','sales.user_id')
             ->select('sales.*','u.name as user')
@@ -90,6 +99,20 @@ class ReportsController extends Component
         $this->saleId = $saleId;
 
         $this->emit('show-modal','details loaded');
+
+    }
+
+    public function rePrint($sale_ID)
+    {
+        if ($sale_ID){
+
+            $this->ticketSale($sale_ID);
+
+            if ($this->print_error === 1)
+            $this->emit('sale-ok', 'Reimpresion exitosa...!');
+            else if ($this->print_error === 0)
+            $this->emit('sale-error', 'ERROR FALLO DE IMPRESORA...! Revisar Coneccion...!');
+        }
 
     }
 

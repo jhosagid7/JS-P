@@ -8,6 +8,7 @@ use App\Models\Product;
 use Livewire\Component;
 
 use App\Traits\CartTrait;
+use App\Traits\PrintTrait;
 
 use App\Models\SaleDetail;
 use App\Models\Denomination;
@@ -19,6 +20,7 @@ class PosController extends Component
 {
     use Utils;
     use CartTrait;
+    use PrintTrait;
 
     public $total, $itemsQuantity, $efectivo, $change;
 
@@ -153,11 +155,14 @@ class PosController extends Component
             $this->change = 0;
             $this->total = Cart::getTotal();
             $this->itemsQuantity = Cart::getTotalQuantity();
-            $this->emit('sale-ok', 'Venta registrada con éxito');
-            $ticket = $this->buildTicket($sale);
-            $d = $this->Encrypt($ticket);
-            $this->emit('print-ticket', $d);
-            //$this->emit('print-ticket', $sale->id);
+
+            $this->ticketSale($sale->id);
+
+            if($this->print_error === 1)
+                $this->emit('sale-ok', 'Venta registrada con éxito');
+            else if($this->print_error === 0)
+                $this->emit('sale-error', 'Venta registrada con éxito. FALLO AL IMPRIMIR...!');
+
 
         } catch (Exception $e) {
             DB::rollback();
@@ -216,7 +221,14 @@ class PosController extends Component
     {
         $lastSale = Sale::latest()->first();
 
-        if ($lastSale)
-            $this->emit('print-last-id', $lastSale->id);
+        if ($lastSale){
+            
+            $this->ticketLastSale($lastSale->id);
+
+            if ($this->print_error === 1)
+                $this->emit('sale-ok', 'Reimpresion exitosa...!');
+            else if ($this->print_error === 0)
+                $this->emit('sale-error', 'ERROR FALLO DE IMPRESORA...! Revisar Coneccion...!');
+        }
     }
 }

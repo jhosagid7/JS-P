@@ -25,8 +25,8 @@
                                 <h6>Elige el tipo de reporte</h6>
                                 <div class="form-group">
                                     <select wire:model="reportType" class="form-control">
-                                        <option value="0">Ventas del día</option> 
-                                        <option value="1">Ventas por fecha</option>        
+                                        <option value="0">Ventas del día</option>
+                                        <option value="1">Ventas por fecha</option>
                                     </select>
                                 </div>
                             </div>
@@ -47,10 +47,10 @@
                                     Consultar
                                 </button>
 
-                                <a class="btn btn-dark btn-block {{count($data) <1 ? 'disabled' : '' }}" 
+                                <a class="btn btn-dark btn-block {{count($data) <1 ? 'disabled' : '' }}"
                                 href="{{ url('report/pdf' . '/' . $userId . '/' . $reportType . '/' . $dateFrom . '/' . $dateTo) }}" target="_blank">Generar PDF</a>
 
-                                <a  class="btn btn-dark btn-block {{count($data) <1 ? 'disabled' : '' }}" 
+                                <a  class="btn btn-dark btn-block {{count($data) <1 ? 'disabled' : '' }}"
                                 href="{{ url('report/excel' . '/' . $userId . '/' . $reportType . '/' . $dateFrom . '/' . $dateTo) }}" target="_blank">Exportar a Excel</a>
                             </div>
                         </div>
@@ -76,22 +76,22 @@
                                     @endif
                                     @foreach($data as $d)
                                     <tr>
-                                        <td class="text-center"><h6>{{$d->id}}</h6></td>                               
+                                        <td class="text-center"><h6>{{$d->id}}</h6></td>
                                         <td class="text-center"><h6>${{number_format($d->total,2)}}</h6></td>
-                                        <td class="text-center"><h6>{{$d->items}}</h6></td>                                   
-                                        <td class="text-center"><h6>{{$d->status}}</h6></td>    
-                                        <td class="text-center"><h6>{{$d->user}}</h6></td>   
+                                        <td class="text-center"><h6>{{$d->items}}</h6></td>
+                                        <td class="text-center"><h6>{{$d->status}}</h6></td>
+                                        <td class="text-center"><h6>{{$d->user}}</h6></td>
                                         <td class="text-center">
                                             <h6>
                                                 {{\Carbon\Carbon::parse($d->created_at)->format('d-m-Y')}}
                                             </h6>
-                                        </td>    
+                                        </td>
                                         <td class="text-center" >
                                             <button wire:click.prevent="getDetails({{$d->id}})"
                                                 class="btn btn-dark btn-sm">
                                                 <i class="fas fa-list"></i>
                                             </button>
-                                            <button type="button" onclick="rePrint({{$d->id}})"
+                                            <button type="button" wire:click.prevent="rePrint({{$d->id}})"
                                                 class="btn btn-dark btn-sm">
                                                 <i class="fas fa-print"></i>
                                             </button>
@@ -99,7 +99,7 @@
                                     </tr>
                                     @endforeach
                                 </tbody>
-                            </table>                   
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -167,6 +167,16 @@
         //eventos
         window.livewire.on('show-modal', Msg =>{
             $('#modalDetails').modal('show')
+        })
+
+        window.livewire.on('sale-ok', Msg => {
+        console.log('sale-ok')
+        //@this.printTicket(Msg)
+        noty(Msg)
+        })
+
+        window.livewire.on('sale-error', Msg => {
+        noty(Msg, 2)
         })
     })
 

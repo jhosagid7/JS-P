@@ -22,7 +22,7 @@ class ProductsController extends Component
 	public function ScanCode($code)
 	{
 		$this->ScanearCode($code);
-		$this->emit('global-msg', "SE AGREGÓ EL PRODUCTO AL CARRITO");
+		// $this->emit('global-msg', "SE AGREGÓ ELd PRODUCTO AL CARRITO");
 	}
 
 	public $name, $barcode, $cost, $price, $stock, $alerts, $categoryid, $search, $image, $selected_id, $pageTitle, $componentName;

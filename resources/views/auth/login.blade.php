@@ -25,8 +25,8 @@
                 <div class="form-container">
                     <div class="form-content">
 
-                        <h1 class="text-center"><span class="brand-name"><b>JS-V</b></span></h1>   
-                        <h1 class="text-center"><span class="brand-name">Sistema de Ventas</span></h1>                           
+                        <h1 class="text-center"><span class="brand-name"><b>JS-V</b></span></h1>
+                        <h1 class="text-center"><span class="brand-name">Sistema de Ventas</span></h1>
                         <form class="text-left mt-5" action="{{ route('login') }}" method="POST">
                               @csrf
                             <div class="form" >
@@ -81,10 +81,10 @@
                                 </div>
                             -->
                         </div>
-                    </form>                        
+                    </form>
                     <p class="terms-conditions text-center">© 2021 All Rights Reserved. <a href="https://github.com/jhosagid7" target="_blank">JHONNY PIRELA</a> <br>versión 2.2.0 </p>
 
-                </div>                    
+                </div>
             </div>
         </div>
     </div>

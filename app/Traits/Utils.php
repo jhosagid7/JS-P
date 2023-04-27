@@ -6,8 +6,8 @@ trait Utils {
     public function Encrypt($text)
     {
 
-        $plaintext = $text;// 'LUIS fax';
-        $password = 'luisfax';
+        $plaintext = $text;// 'JHOSAGID';
+        $password = 'JHOSAGID';
 
 // CBC has an IV and thus needs randomness every time a message is encrypted
         $method = 'aes-256-cbc';

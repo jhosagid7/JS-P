@@ -100,7 +100,7 @@
 					<span>Sistema LWPOS v1</span>
 				</td>
 				<td width="60%" class="text-center">
-					luisfax.com
+					https://github.com/jhosagid7
 				</td>
 				<td class="text-center" width="20%">
 					página <span class="pagenum"></span>				

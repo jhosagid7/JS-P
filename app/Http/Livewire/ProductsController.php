@@ -19,6 +19,8 @@ class ProductsController extends Component
 	use CartTrait;
 
 
+
+
 	public function ScanCode($code)
 	{
 		$this->ScanearCode($code);
@@ -172,7 +174,7 @@ class ProductsController extends Component
 			'alerts' => $this->alerts,
 			'category_id' => $this->categoryid
 		]);
-
+// dd($this->cost);
 		if ($this->image) {
 			$customFileName = uniqid() . '_.' . $this->image->extension();
 			$this->image->storeAs('public/products', $customFileName);
@@ -209,7 +211,8 @@ class ProductsController extends Component
 	}
 
 	protected $listeners = [
-		'deleteRow' => 'Destroy'
+		'deleteRow' => 'Destroy',
+        'scan-code'  =>  'ScanCode'
 	];
 
 

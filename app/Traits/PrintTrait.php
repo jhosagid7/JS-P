@@ -141,7 +141,8 @@ trait PrintTrait
             $this->machine_user = "Administrator";
             $this->machine_pass = "1avacamar1posa";
             $this->machine_name = "DESKTOP-DSUA32T";
-            $this->network = true;
+            $this->network = false;          $this->network = false;
+;
 
             if ($this->network) {
                 $this->print_route = "smb://$this->machine_user:$this->machine_pass@$this->machine_name/$this->print_name";

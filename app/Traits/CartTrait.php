@@ -36,6 +36,8 @@ trait CartTrait {
 
                 $this->emit('scan-ok','Producto agregado*');
 
+                $this->emitTo('pendin-controller', 'ScanCode');
+
 
         }
 
@@ -79,6 +81,7 @@ public function IncreaseQuantity($product, $cant = 1)
         $this->itemsQuantity = Cart::getTotalQuantity();
 
         $this->emit('scan-ok', $title);
+
 
 }
 
@@ -161,6 +164,7 @@ public function trashCart()
         $this->itemsQuantity = Cart::getTotalQuantity();
 
         $this->emit('scan-ok', 'Carrito vacío*');
+        $this->emitTo('pendin-controller', 'ScanCode');
 
 }
 

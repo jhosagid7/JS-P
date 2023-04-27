@@ -16,6 +16,7 @@ use App\Http\Livewire\ProductsController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\PrinterController;
 use App\Http\Livewire\CategoriesController;
+use Illuminate\Support\Facades\Auth;
 
 
 

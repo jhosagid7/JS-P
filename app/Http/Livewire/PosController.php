@@ -58,14 +58,22 @@ class PosController extends Component
         'clearCart'  => 'clearCart',
         'saveSale'   => 'saveSale',
         'refresh' => '$refresh',
-        'print-last' => 'printLast'
+        'print-last' =>
+        'printLast',
+        'scan-code-byid' => 'ScanCodeById'
     ];
+
+    public function ScanCodeById(Product $product)
+    {
+        $this->IncreaseQuantity($product);
+    }
 
 
     // buscar y agregar producto por escaner y/o manual
     public function ScanCode($barcode, $cant = 1)
     {
         $this->ScanearCode($barcode, $cant);
+
     }
 
     // incrementar cantidad item en carrito
@@ -222,7 +230,7 @@ class PosController extends Component
         $lastSale = Sale::latest()->first();
 
         if ($lastSale){
-            
+
             $this->ticketLastSale($lastSale->id);
 
             if ($this->print_error === 1)

@@ -125,6 +125,7 @@
 			$('.product-name').focus()
 		})
 
+
         window.livewire.on('no-stock', Msg => {
         noty(Msg, 2)
         })

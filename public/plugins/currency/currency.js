@@ -2,13 +2,13 @@ $("input[data-type='currency']").on({
     keyup: function() {
       formatCurrency($(this));
     },
-    blur: function() { 
+    blur: function() {
       formatCurrency($(this), "blur");
     }
 });
 
 
-function formatNumber(n) {  
+function formatNumber(n) {
   return n.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }
 
@@ -16,19 +16,19 @@ function formatNumber(n) {
 function formatCurrency(input, blur) {
   // appends $ to value, validates decimal side
   // and puts cursor back in right position.
-  
+
   // get input value
   var input_val = input.val();
-  
+
   // don't validate empty input
   if (input_val === "") { return; }
-  
+
   // original length
   var original_len = input_val.length;
 
-  // initial caret position 
+  // initial caret position
   var caret_pos = input.prop("selectionStart");
-    
+
   // check for decimal
   if (input_val.indexOf(".") >= 0) {
 
@@ -46,12 +46,12 @@ function formatCurrency(input, blur) {
 
     // validate right side
     right_side = formatNumber(right_side);
-    
-    // On blur make sure 2 numbers after decimal
+
+    // On blur make sure 2 numbers after decimal 4,522,222.45 4,500.25
     if (blur === "blur") {
       right_side += "00";
     }
-    
+
     // Limit decimal to only 2 digits
     right_side = right_side.substring(0, 2);
 
@@ -66,13 +66,13 @@ function formatCurrency(input, blur) {
     input_val = formatNumber(input_val);
     //input_val = "$" + input_val;
 	input_val = input_val;
-    
+
     // final formatting
     if (blur === "blur") {
       input_val += ".00";
     }
   }
-  
+
   // send updated string to input
   input.val(input_val);
 

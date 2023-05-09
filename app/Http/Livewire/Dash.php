@@ -21,7 +21,6 @@ class Dash extends Component
 
     public function render()
     {
-
         $this->getWeekSales();
         $this->getTop5();
         $this->getSalesMonth();

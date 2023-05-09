@@ -34,7 +34,9 @@ trait CartTrait {
                 $this->total = Cart::getTotal();
                 $this->itemsQuantity = Cart::getTotalQuantity();
 
-                $this->emit('scan-ok','Producto agregado*');               
+                $this->emit('scan-ok','Producto agregado*');
+
+                $this->emitTo('pendin-controller', 'ScanCode');
 
 
         }
@@ -53,9 +55,9 @@ public function InCart($productId)
 
 
 public function IncreaseQuantity($product, $cant = 1)
-{        
+{
         $title ='';
-        
+
         $exist = Cart::get($product->id);
         if($exist)
                 $title = 'Cantidad actualizada*';
@@ -79,6 +81,7 @@ public function IncreaseQuantity($product, $cant = 1)
         $this->itemsQuantity = Cart::getTotalQuantity();
 
         $this->emit('scan-ok', $title);
+
 
 }
 
@@ -116,7 +119,7 @@ public function updateQuantity($product, $cant = 1)
 
                 $this->emit('scan-ok', $title);
 
-        }       
+        }
 
 
 }
@@ -135,14 +138,14 @@ public function decreaseQuantity($productId)
 {
         $item = Cart::get($productId);
         Cart::remove($productId);
-        
+
         // si el producto no tiene imagen, mostramos una default
         $img = (count($item->attributes) > 0 ? $item->attributes[0] : Product::find($productId)->imagen);
-        
+
         $newQty = ($item->quantity) - 1;
 
-        if($newQty > 0)                 
-                Cart::add($item->id, $item->name, $item->price, $newQty, $img);                
+        if($newQty > 0)
+                Cart::add($item->id, $item->name, $item->price, $newQty, $img);
 
 
         $this->total = Cart::getTotal();
@@ -161,6 +164,7 @@ public function trashCart()
         $this->itemsQuantity = Cart::getTotalQuantity();
 
         $this->emit('scan-ok', 'Carrito vacío*');
+        $this->emitTo('pendin-controller', 'ScanCode');
 
 }
 

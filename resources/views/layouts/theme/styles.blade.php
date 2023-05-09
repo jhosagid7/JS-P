@@ -18,13 +18,13 @@
 
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css" />
 
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/widgets/modules-widgets.css') }}">   
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/widgets/modules-widgets.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/theme-checkbox-radio.css') }}">
 
  <link href="{{ asset('assets/css/apps/scrumboard.css') }}" rel="stylesheet" type="text/css" />
- <link href="{{ asset('assets/css/apps/notes.css') }}" rel="stylesheet" type="text/css" /> 
- 
- 
+ <link href="{{ asset('assets/css/apps/notes.css') }}" rel="stylesheet" type="text/css" />
+
+
 <style>
 	aside {
 		display: none!important;
@@ -36,7 +36,7 @@
 		border-color: #3b3f5c;
 	}
 
-	@media (max-width: 480px) 
+	@media (max-width: 480px)
 	{
 		.mtmobile {
 			margin-bottom: 20px!important;
@@ -54,6 +54,7 @@
 
 	/*sidebar background*/
 	.sidebar-theme #compactSidebar {
+        z-index: auto!important;
 		background: #191e3a!important;
 	}
 
@@ -77,6 +78,6 @@
 </style>
 
 
- <link href="{{ asset('plugins/flatpickr/flatpickr.dark.css') }}" rel="stylesheet" type="text/css" /> 
+ <link href="{{ asset('plugins/flatpickr/flatpickr.dark.css') }}" rel="stylesheet" type="text/css" />
 
 @livewireStyles

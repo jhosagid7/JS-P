@@ -51,10 +51,15 @@ return [
     | will load its JavaScript assets from the app's "relative root".
     |
     | Examples: "/assets", "myurl.com/app".
+    |'asset_url' => url('/'),
+    |'asset_url' => null,
+    |'asset_url' => '/assets',
+    |'asset_url' => env('APP_URL'),
     |
     */
-
-    'asset_url' => null,
+    // 'asset_url' => env('APP_URL','http://localhost'),
+    'asset_url' => 'http://localhost/lwpos_demo_vdos/public',
+    'asset_url' => 'http://172.27.221.59/lwpos_demo_vdos/public',
 
     /*
     |--------------------------------------------------------------------------

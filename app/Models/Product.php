@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
 	use HasFactory;
-	
+
 
 	protected $fillable = ['name','barcode','cost','price','stock','alerts','image','category_id'];
 
@@ -25,12 +25,12 @@ class Product extends Model
 
 
 	public function getImagenAttribute()
-	{	
+	{
 		if($this->image != null)
 			return (file_exists('storage/products/' . $this->image) ? $this->image : 'noimg.jpg');
 		else
-			return 'noimg.jpg';		
-		
+			return 'noimg.jpg';
+
 	}
 
 	public function getPriceAttribute($value)
@@ -46,9 +46,22 @@ class Product extends Model
 		$this->attributes['price'] =str_replace(',', '.', preg_replace( '/,/', '', $value, preg_match_all( '/,/', $value) - 1));
 
 	}
+	public function getStockAttribute($value)
+	{
+		//comma por punto
+		//return str_replace('.', ',', $value);
+		// punto por coma
+		return str_replace(',', '.', $value);
+	}
+	public function setStockAttribute($value)
+	{
+        //$this->attributes['price'] = str_replace(',', '.', $value);
+		$this->attributes['stock'] =str_replace(',', '.', preg_replace( '/,/', '', $value, preg_match_all( '/,/', $value) - 1));
+
+	}
 
 
-	
+
 
 
 }

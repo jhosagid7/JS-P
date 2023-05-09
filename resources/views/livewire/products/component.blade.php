@@ -116,7 +116,7 @@
 			$('#theModal').modal('hide')
 		});
 		window.livewire.on('hidden.bs.modal', msg => {
-			$('.er').css('display', 'none')			
+			$('.er').css('display', 'none')
 		});
 		$('#theModal').on('hidden.bs.modal', function(e) {
 			$('.er').css('display', 'none')
@@ -124,6 +124,15 @@
 		$('#theModal').on('shown.bs.modal', function(e) {
 			$('.product-name').focus()
 		})
+
+
+        window.livewire.on('no-stock', Msg => {
+        noty(Msg, 2)
+        })
+
+        window.livewire.on('scan-ok', Msg => {
+        noty(Msg)
+        })
 
 
 

@@ -29,7 +29,7 @@ class ExportController extends Controller
        }
 
 
-       if($userId == 0) 
+       if($userId == 0)
        {
         $data = Sale::join('users as u','u.id','sales.user_id')
         ->select('sales.*','u.name as user')
@@ -67,8 +67,46 @@ class ExportController extends Controller
     public function reporteExcel($userId, $reportType, $dateFrom =null, $dateTo =null)
     {
         $reportName = 'Reporte de Ventas_' . uniqid() . '.xlsx';
-        
+
         return Excel::download(new SalesExport($userId, $reportType, $dateFrom, $dateTo),$reportName );
+    }
+
+    public function cashoutPDF($userId, $dateFrom = null, $dateTo = null)
+    {
+        $data = [];
+
+        if ($userId > 0)
+        {
+            $fi = Carbon::parse($dateFrom)->format('Y-m-d') . ' 00:00:00';
+            $ff = Carbon::parse($dateTo)->format('Y-m-d')     . ' 23:59:59';
+        }
+
+
+        if ($userId > 0) {
+            $data = Sale::whereBetween('created_at', [$fi, $ff])
+            ->where('status', 'Paid')
+            ->where('user_id', $userId)
+            ->get();
+        }
+
+        $user = User::find($userId)->name;
+        $pdf = PDF::loadView('pdf.cashout', compact('data', 'user', 'dateFrom', 'dateTo'))->setPaper('a4', 'landscape');
+
+        /*
+    $pdf = new DOMPDF();
+    $pdf->setBasePath(realpath(APPLICATION_PATH . '/css/'));
+    $pdf->loadHtml($html);
+    $pdf->render();
+    */
+        /*
+    $pdf->set_protocol(WWW_ROOT);
+    $pdf->set_base_path('/');
+*/
+
+        return $pdf->stream('salesReport.pdf'); // visualizar
+        //$customReportName = 'salesReport_'.Carbon::now()->format('Y-m-d').'.pdf';
+        //return $pdf->download($customReportName); //descargar
+
     }
 
 }

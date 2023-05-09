@@ -36,7 +36,7 @@ $(document).ready(function(){
     });
 
 
-    // Date 
+    // Date
 
     $("#date").inputmask("99/99/9999");
     $("#date2").inputmask("99-99-9999");
@@ -82,14 +82,14 @@ $(document).ready(function(){
     // On InComplete
     $("#onincomplete").inputmask("99/99/9999",{ onincomplete: function(){ $('#onincompleteHelp').css('display', 'block'); } });
 
-    
+
     // On Cleared
     $("#oncleared").inputmask("99/99/9999",{ oncleared: function(){ $('#onclearedHelp').css('display', 'block'); } });
 
 
     // Repeater
     $("#repeater").inputmask({ "mask": "2", "repeat": 4});  // ~ mask "9999999999"
-    
+
 
     // isComplete
 

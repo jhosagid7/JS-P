@@ -17,7 +17,7 @@
 		</div>
 
 	</div>
-
+    <livewire:modal-search />
 </div>
 
 <script src="{{ asset('js/keypress.js') }}"></script>

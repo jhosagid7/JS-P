@@ -8,14 +8,16 @@
 			cursorborder: "0px",
 			cursorborderradius:3
 
-		})	
+		})
 
 	})
+
+    
 
 
 
 	function Confirm(id, eventName, text)
-	{	
+	{
 		swal({
 			title: 'CONFIRMAR',
 			text: text,
@@ -47,7 +49,7 @@
 			confirmButtonColor: '#3B3F5C',
 			confirmButtonText: 'SI'
 		}).then(function(result) {
-			if(result.value){               
+			if(result.value){
                //$('#theModal').modal('show')
                window.location = '/products'
                 swal.close()
@@ -55,5 +57,5 @@
 
         })
 	}
-	
+
 </script>

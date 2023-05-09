@@ -16,6 +16,9 @@
         "laravel/ui": "^3.2",
         "livewire/livewire": "^2.4",
         "maatwebsite/excel": "^3.1",
+        "mike42/escpos-php": "^4.0",
+        "pavel-mironchik/laravel-backup-panel": "^2.2",
+        "spatie/laravel-backup": "6.*",
         "spatie/laravel-permission": "^4.1"
     },
     "require-dev": {

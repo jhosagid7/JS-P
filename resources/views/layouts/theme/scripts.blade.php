@@ -19,7 +19,7 @@
 <script src="{{ asset('plugins/currency/currency.js')}}"></script>
 
 <script>
-    function noty(msg, option = 1)    
+    function noty(msg, option = 1)
     {
         Snackbar.show({
             text: msg.toUpperCase(),
@@ -35,7 +35,12 @@
         });
     })
 
-    
+    // cuando la modal se haya cargado, ponemos focus en el input search
+    $('#modalSearchProduct').on('shown.bs.modal', function() {
+    $('#modal-search-input').focus();
+    })
+
+
 </script>
 
 

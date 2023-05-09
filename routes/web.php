@@ -60,6 +60,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('report/excel/{user}/{type}/{f1}/{f2}', [ExportController::class, 'reporteExcel']);
     Route::get('report/excel/{user}/{type}', [ExportController::class, 'reporteExcel']);
 
+    //Cashout PDF
+    Route::get('cashout/pdf/{user}/{f1}/{f2}', [ExportController::class, 'cashoutPDF']);
+
     // //Creamos rutas para la Impresion de tickets
     // Route::get('print/sale/{$id}', [PrinterController::class, 'ticketSale']);
 

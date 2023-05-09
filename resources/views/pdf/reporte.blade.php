@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
 	<title>Reporte de Ventas</title>
 
 	<!-- cargar a través de la url del sistema -->
@@ -17,12 +17,12 @@
 
 </head>
 <body>
-	
+
 	<section class="header" style="top: -287px;">
 		<table cellpadding="0" cellspacing="0" width="100%">
 			<tr>
 				<td colspan="2" class="text-center">
-					<span style="font-size: 25px; font-weight: bold;">Sistema LWPOS</span>
+					<span style="font-size: 25px; font-weight: bold;">Sistema JS-P</span>
 				</td>
 			</tr>
 			<tr>
@@ -81,10 +81,10 @@
 					</td>
 					<td colspan="1" class="text-center">
 						<span><strong>${{ number_format($data->sum('total'),2)}}</strong></span>
-					</td>	
+					</td>
 					<td class="text-center">
 						{{$data->sum('items')}}
-					</td>						
+					</td>
 					<td colspan="3"></td>
 				</tr>
 			</tfoot>
@@ -103,7 +103,7 @@
 					https://github.com/jhosagid7
 				</td>
 				<td class="text-center" width="20%">
-					página <span class="pagenum"></span>				
+					página <span class="pagenum"></span>
 				</td>
 
 			</tr>

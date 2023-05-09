@@ -52,12 +52,12 @@ class ReportsController extends Component
     {
         if($this->reportType == 0) // ventas del dia
         {
-            $from = Carbon::parse(Carbon::now())->format('Y-m-d') . ' 00:00:00';
-            $to = Carbon::parse(Carbon::now())->format('Y-m-d')   . ' 23:59:59';
+            $from   = Carbon::parse(Carbon::now())->format('Y-m-d') . ' 00:00:00';
+            $to     = Carbon::parse(Carbon::now())->format('Y-m-d') . ' 23:59:59';
 
         } else {
-             $from = Carbon::parse($this->dateFrom)->format('Y-m-d') . ' 00:00:00';
-             $to = Carbon::parse($this->dateTo)->format('Y-m-d')     . ' 23:59:59';
+             $from  = Carbon::parse($this->dateFrom)->format('Y-m-d') . ' 00:00:00';
+             $to    = Carbon::parse($this->dateTo)->format('Y-m-d')   . ' 23:59:59';
         }
 
         if($this->reportType == 1 && ($this->dateFrom == '' || $this->dateTo =='')) {
